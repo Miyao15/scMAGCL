@@ -2,33 +2,81 @@
 
 ![scMAGCL Architecture](./framework.png)
 
+## Introduction
+
+Official PyTorch implementation of **scMAGCL**, a novel framework designed for multi-granularity asymmetric graph contrastive learning to enhance single-cell and cross-omics representation.
+
 ## Requirements
 
-* python : 3.8.17
-* scanpy : 1.9.6
-* sklearn : 1.2.2
-* torch : 1.8.1
-* torch-geometric : 2.2.0
-
-## Datasets
-
-**Unimodal scRNA-seq Datasets:**
-* Tosches_turtle : https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE110204
-* Chen : https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE87544
-* Zeisel : https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE60361
-* Quake_10x_Limb_Muscle : https://figshare.com/articles/dataset/Tabula_Muris/5829687
-* human_pbmc_3k : https://support.10xgenomics.com/single-cell-gene-expression/datasets/1.1.0/pbmc3k
-
-**Multimodal Datasets (scRNA-seq + ADT / scATAC-seq):**
-* GSE150599_spleen_lymph_111 : https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE150599
-* GSE201402 : https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE201402
-* GSE163120 : https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE163120
-* human_brain_10x : https://support.10xgenomics.com/single-cell-multiome-atac-gex/datasets
-
-## Usage
-
-Please navigate to the directory containing the core scripts (`main.py`, `utils.py`, `config.py`, `scMAGCL.py`) before execution. The `Quake_10x_Limb_Muscle` dataset is taken as an example:
+The codebase is implemented in Python 3.8+ and PyTorch. To ensure reproducibility, we recommend setting up the environment using the provided `requirements.txt`:
 
 ```bash
-cd scMAGCL-main
-python main.py --data_path '../data/Quake_10x_Limb_Muscle.h5' --save_model_path '../save_file' --n_clusters 6
+git clone [https://github.com/Miyao15/scMAGCL.git](https://github.com/Miyao15/scMAGCL.git)
+cd scMAGCL
+pip install -r requirements.txt
+Core Dependencies:
+
+torch == 2.4.1
+
+torch-geometric == 2.6.1
+
+scanpy == 1.9.8
+
+anndata == 0.9.2
+
+scikit-learn == 1.3.2
+
+scib == 1.1.5
+
+(For a complete list of dependencies including numerical processing, visualization, and system utilities, please refer to requirements.txt.)
+
+Datasets
+The preprocessed datasets used for benchmarking in this study are publicly available for reproducibility:
+
+1. Cross-Omics Dataset (scRNA-seq + ADT)
+
+10Xmalt: Available on Figshare at https://figshare.com/articles/dataset/scMAGCA-datasets/30164773
+
+2. Unimodal scRNA-seq Benchmark Datasets
+
+We utilize standard benchmark datasets (e.g., Young, Zeisel, 10X_PBMC). The preprocessed .h5 files can be accessed via the scMGCA benchmark repository:
+
+Link: https://github.com/Philyzh8/scMGCA/tree/master/dataset
+
+Usage
+Please ensure you have configured the environment properly and placed the downloaded datasets into the data/ directory before execution. Below are the standard execution commands for different representation learning scenarios.
+
+1. Unimodal scRNA-seq Analysis
+For single-modality benchmark datasets (e.g., Young), execute the main training script directly:
+python scMAGCL-main/main.py \
+  --data_path "data/Young/data.h5" \
+  --n_clusters 11 \
+  --epochs 200
+2. Cross-Omics Integration (RNA + ADT)
+For CITE-seq data, the pipeline performs automated modality alignment and joint representation learning:
+python preprocessing/preprocess_adt.py \
+  --rna_h5ad "data/4_10Xmalt/10Xmalt_rna.h5ad" \
+  --adt_h5ad "data/4_10Xmalt/10Xmalt_adt.h5ad" \
+  --label_csv "data/4_10Xmalt/10Xmalt_label.csv" \
+  --filter2 2000 \
+  --no_clr \
+  --no_scale \
+  --train \
+  --n_clusters 11 \
+  --n_runs 1
+3. Cross-Omics Integration (RNA + ATAC)
+For paired scRNA-seq and scATAC-seq data, use the ATAC preprocessing module. Feature selection (HVGs) is applied independently to both modalities:
+python preprocessing/preprocess_atac.py \
+  --atac_h5ad "data/20_human_pbmc_3k/human_pbmc_3k_atac.h5ad" \
+  --rna_h5ad "data/20_human_pbmc_3k/human_pbmc_3k_rna.h5ad" \
+  --label_csv "data/20_human_pbmc_3k/human_pbmc_3k_label_a.csv" \
+  --n_clusters 8 \
+  --filter1 \
+  --f1 2000 \
+  --filter2 \
+  --f2 2000 \
+  --no_clr \
+  --no_scale \
+  --n_runs 10
+License
+This project is licensed under the MIT License - see the LICENSE file for details.
