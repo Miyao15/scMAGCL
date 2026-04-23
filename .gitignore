@@ -1,0 +1,13 @@
+# Python 缓存
+__pycache__/
+*.py[cod]
+*$py.class
+
+# 数据和结果 (避免上传庞大的 .h5ad 或 .csv)
+data/
+results/
+scMAGCL_data/
+
+# IDE 配置
+.vscode/
+.ipynb_checkpoints/
