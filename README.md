@@ -1,6 +1,6 @@
 # scMAGCL: Multi-Granularity Asymmetric Graph Contrastive Learning for Single-Cell and Cross-Omics Representation
 
-![scMAGCL Architecture](./framework.pdf)
+![scMAGCL Architecture](./framework.png)
 
 ## Requirements
 
