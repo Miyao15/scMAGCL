@@ -8,7 +8,7 @@ import os
 import gc
 import time
 from utils import setup_seed, loader_construction, evaluate, device
-from scSimGCL import Model
+from scMAGCL import Model
 from sklearn.cluster import KMeans
 from config import config
 
@@ -50,7 +50,7 @@ def train(train_loader,
           phi1=None,
           lambda_byol=1.0):
     """
-    Core training procedure for the scSimGCL model.
+    Core training procedure for the scMAGCL model.
     Reconstruction loss (MAE) is utilized for optimization but external 
     imputation metrics are not explicitly calculated here.
     """
@@ -158,7 +158,7 @@ def test(z_test_epoch,
     return results
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description="scSimGCL: Graph Contrastive Learning for Single-Cell Analysis")
+    parser = argparse.ArgumentParser(description="scMAGCL: Graph Contrastive Learning for Single-Cell Analysis")
     parser.add_argument("--data_path", type=str, default="Zeisel.h5")
     parser.add_argument("--n_runs", type=int, default=10)
     parser.add_argument("--n_clusters", type=int, default=9)
