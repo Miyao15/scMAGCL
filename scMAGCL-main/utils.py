@@ -110,7 +110,7 @@ def loader_construction(data_path):
             print(f"Load successful: {X_all.shape[0]} cells, {X_all.shape[1]} features, {n_classes} classes.")
             return train_loader, test_loader, X_all.shape[1]
 
-        # Format 1/2: AnnData-like or Baron format (X, obs)
+        # Format 1: AnnData-like or Baron format (X, obs)
         elif 'X' in f and ('obs' in f or 'cell_barcodes' in f):
             print("Detected AnnData/HDF5 structure.")
             X_all = f['X'][()]
@@ -146,8 +146,58 @@ def loader_construction(data_path):
             
             return train_loader, test_loader, adata.shape[1]
 
+        # Format 2: Sparse matrix format / exprs (e.g., Young/data.h5)
+        elif 'exprs' in f:
+            print("Detected sparse matrix / exprs format.")
+            
+            # 兼容稀疏矩阵(包含 data, indices, indptr)或稠密矩阵
+            if isinstance(f['exprs'], h5py.Group) and 'data' in f['exprs']:
+                data = f['exprs/data'][()]
+                indices = f['exprs/indices'][()]
+                indptr = f['exprs/indptr'][()]
+                shape = tuple(f['exprs/shape'][()])
+                X_all = csr_matrix((data, indices, indptr), shape=shape)
+            else:
+                X_all = f['exprs'][()]
+
+            # 从 obs 或 label_key 中提取标签
+            y_all = None
+            if 'obs' in f:
+                possible_keys = ['cell_type1', 'cell_type', 'celltype', 'cluster', 'labels', 'Group', 'annotation']
+                for key in possible_keys:
+                    if key in f['obs']:
+                        y_all = f[f'obs/{key}'][()]
+                        break
+            elif label_key is not None:
+                y_all = f[label_key][()]
+
+            if y_all is None:
+                print("Warning: No labels found. Generating dummy clusters.")
+                y_all = np.array([f"Cluster_{i % 10}" for i in range(X_all.shape[0])])
+
+            # 将字节类型解码为字符串
+            y_all = np.array(y_all).squeeze()
+            if len(y_all) > 0 and isinstance(y_all[0], bytes):
+                y_all = np.array([v.decode('utf-8') for v in y_all])
+            y_all = y_all.astype(str)
+
+            adata = sc.AnnData(X=X_all, obs={'cell_type': y_all})
+            adata = normalize(adata)
+            adata = select_highly_variable_genes(adata)
+
+            le = LabelEncoder()
+            y_encoded = le.fit_transform(adata.obs['cell_type'])
+            
+            X_train, X_test, y_train, y_test = train_test_split(
+                adata.X, y_encoded, test_size=0.2, random_state=1
+            )
+
+            train_loader = DataLoader(CellDataset(X_train, y_train), batch_size=128, shuffle=True)
+            test_loader = DataLoader(CellDataset(X_test, y_test), batch_size=128, shuffle=False)
+            
+            return train_loader, test_loader, adata.shape[1]
+
         else:
-            # 稍微加了一个报错提示，如果再遇到不支持的格式，会打印出文件里到底有什么键
             keys = list(f.keys())
             raise ValueError(f"Unsupported file format at {data_path}. Available keys: {keys}")
 

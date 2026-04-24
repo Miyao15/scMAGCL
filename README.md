@@ -51,7 +51,7 @@ python scMAGCL-main/main.py --data_path "test_data/Young/data.h5" --n_clusters 1
 For CITE-seq data, the pipeline performs automated modality alignment and joint representation learning:
 
 ```
-python preprocessing/preprocess_adt.py --rna_h5ad "test_data/4_10Xmalt/10Xmalt_rna.h5ad" --adt_h5ad "test_data/4_10Xmalt/10Xmalt_adt.h5ad" --label_csv "test_data/4_10Xmalt/10Xmalt_label.csv" --filter2 2000 --no_clr --no_scale --train --n_clusters 11 --n_runs 1
+python preprocessing/preprocess_adt.py --rna_h5ad "test_data/4_10Xmalt/10Xmalt_rna.h5ad" --adt_h5ad "test_data/4_10Xmalt/10Xmalt_adt.h5ad" --label_csv "test_data/4_10Xmalt/10Xmalt_label.csv" --filter2 2000 --no_clr --no_scale --train --n_clusters 11
 ```
 
 **3. Cross-Omics Integration (RNA + ATAC)**
@@ -59,7 +59,7 @@ python preprocessing/preprocess_adt.py --rna_h5ad "test_data/4_10Xmalt/10Xmalt_r
 For paired scRNA-seq and scATAC-seq data, use the ATAC preprocessing module. Feature selection (HVGs) is applied independently to both modalities:
 
 ```
-python preprocessing/preprocess_atac.py --atac_h5ad "test_data/20_human_pbmc_3k/human_pbmc_3k_atac.h5ad" --rna_h5ad "test_data/20_human_pbmc_3k/human_pbmc_3k_rna.h5ad" --label_csv "test_data/20_human_pbmc_3k/human_pbmc_3k_label_a.csv" --n_clusters 8 --filter1 --f1 2000 --filter2 --f2 2000 --no_clr --no_scale --n_runs 10
+python preprocessing/preprocess_atac.py --atac_h5ad "test_data/20_human_pbmc_3k/human_pbmc_3k_atac.h5ad" --rna_h5ad "test_data/20_human_pbmc_3k/human_pbmc_3k_rna.h5ad" --label_csv "test_data/20_human_pbmc_3k/human_pbmc_3k_label_a.csv" --n_clusters 8 --filter1 --f1 2000 --filter2 --f2 2000 --no_clr --no_scale
 ```
 
 ## License
