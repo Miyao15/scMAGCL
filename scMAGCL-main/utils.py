@@ -81,11 +81,18 @@ def loader_construction(data_path):
     print(f"Loading dataset from: {data_path}")
     
     with h5py.File(data_path, 'r') as f:
-        # Format 0: Preprocessed features (X, y)
-        if 'X' in f and 'y' in f and 'obs' not in f:
-            print("Detected preprocessed feature format.")
+        # 动态检测标签名称：兼容小写的y，大写的Y，或者是labels
+        label_key = None
+        for k in ['y', 'Y', 'labels']:
+            if k in f:
+                label_key = k
+                break
+
+        # Format 0: Preprocessed features (X, y/Y/labels)
+        if 'X' in f and label_key is not None and 'obs' not in f:
+            print(f"Detected preprocessed feature format (using label key: '{label_key}').")
             X_all = f['X'][()]
-            y_all = f['y'][()].squeeze()
+            y_all = f[label_key][()].squeeze()
             if isinstance(y_all[0], bytes):
                 y_all = np.array([v.decode('utf-8') for v in y_all])
 
@@ -116,8 +123,8 @@ def loader_construction(data_path):
                     if key in f['obs']:
                         y_all = f[f'obs/{key}'][()].astype(str)
                         break
-            elif 'y' in f:
-                y_all = f['y'][()].astype(str)
+            elif label_key is not None:
+                y_all = f[label_key][()].astype(str)
 
             if y_all is None:
                 print("Warning: No labels found. Generating dummy clusters.")
@@ -140,7 +147,9 @@ def loader_construction(data_path):
             return train_loader, test_loader, adata.shape[1]
 
         else:
-            raise ValueError(f"Unsupported file format at {data_path}")
+            # 稍微加了一个报错提示，如果再遇到不支持的格式，会打印出文件里到底有什么键
+            keys = list(f.keys())
+            raise ValueError(f"Unsupported file format at {data_path}. Available keys: {keys}")
 
 def setup_seed(seed):
     """Set random seeds for reproducibility."""
