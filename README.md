@@ -32,7 +32,7 @@ Core Dependencies:
 The preprocessed datasets used for benchmarking in this study are publicly available for reproducibility:
 
 * 10Xmalt (Cross-Omics scRNA-seq + ADT) : [https://figshare.com/articles/dataset/scMAGCA-datasets/30164773](https://figshare.com/articles/dataset/scMAGCA-datasets/30164773)
-* Unimodal scRNA-seq Benchmark Datasets (e.g., Young, Zeisel, 10X_PBMC) : [https://github.com/Philyzh8/scMGCA/tree/master/dataset](https://github.com/Philyzh8/scMGCA/tree/master/dataset)
+* Unimodal scRNA-seq Benchmark Datasets : [https://github.com/Philyzh8/scMGCA/tree/master/dataset](https://github.com/Philyzh8/scMGCA/tree/master/dataset)
 
 ## Usage
 
