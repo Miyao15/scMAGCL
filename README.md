@@ -32,16 +32,19 @@ Core Dependencies:
 Quick Start Datasets
 
 For convenience, we provide the formatted datasets used in our benchmark experiments. To run the examples in the **Usage** section, please download the following datasets and place them into the `test_data/` directory:
+
 10Xmalt (Cross-Omics scRNA-seq + ADT) : https://figshare.com/articles/dataset/scMAGCA-datasets/30164773
 
 Quake_10x_Limb_Muscle : https://github.com/Philyzh8/scMGCA/tree/master/dataset
 
 Full Raw Datasets
+
 Due to file size limitations, the full raw datasets evaluated in the manuscript are not directly uploaded to this repository. You can download the original data from the following authoritative public repositories or cloud storage. After downloading, please refer to our preprocessing scripts to format the raw data.
 
 Unimodal scRNA-seq Datasets (8 Datasets):
 
 Young: https://zenodo.org/records/7475687
+
 MCA: https://www.dropbox.com/scl/fi/kx9ec2vr922w7aznatc2g/data.zip?rlkey=8xehi0ix40fj965djugny2yq7&e=1
 
 Zeisel: https://www.dropbox.com/scl/fi/kx9ec2vr922w7aznatc2g/data.zip?rlkey=8xehi0ix40fj965djugny2yq7&e=1
