@@ -29,14 +29,15 @@ Core Dependencies:
 
 ## Datasets
 
-The preprocessed datasets used for benchmarking in this study are publicly available for reproducibility:
+Quick Start Datasets
 
+For convenience, we provide the formatted datasets used in our benchmark experiments. To run the examples in the **Usage** section, please download the following datasets and place them into the `test_data/` directory:
 10Xmalt (Cross-Omics scRNA-seq + ADT) : https://figshare.com/articles/dataset/scMAGCA-datasets/30164773
 
 Quake_10x_Limb_Muscle : https://github.com/Philyzh8/scMGCA/tree/master/dataset
 
-Full Raw Datasets (Data Availability)
-Due to file size limitations, the full raw datasets evaluated in the manuscript (18 datasets in total) are not directly uploaded to this repository. You can download the original data from the following authoritative public repositories or cloud storage. After downloading, please refer to our preprocessing scripts (e.g., preprocess_adt.py, preprocess_atac.py) to format the raw data.
+Full Raw Datasets
+Due to file size limitations, the full raw datasets evaluated in the manuscript are not directly uploaded to this repository. You can download the original data from the following authoritative public repositories or cloud storage. After downloading, please refer to our preprocessing scripts to format the raw data.
 
 Unimodal scRNA-seq Datasets (8 Datasets):
 
