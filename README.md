@@ -31,32 +31,53 @@ Core Dependencies:
 
 The preprocessed datasets used for benchmarking in this study are publicly available for reproducibility:
 
-* 10Xmalt (Cross-Omics scRNA-seq + ADT) : [https://figshare.com/articles/dataset/scMAGCA-datasets/30164773](https://figshare.com/articles/dataset/scMAGCA-datasets/30164773)
-* Unimodal scRNA-seq Benchmark Datasets : [https://github.com/Philyzh8/scMGCA/tree/master/dataset](https://github.com/Philyzh8/scMGCA/tree/master/dataset)
+10Xmalt (Cross-Omics scRNA-seq + ADT) : https://figshare.com/articles/dataset/scMAGCA-datasets/30164773
 
-### Full Raw Datasets (Data Availability)
+Quake_10x_Limb_Muscle : https://github.com/Philyzh8/scMGCA/tree/master/dataset
 
-Due to file size limitations, the full raw datasets evaluated in the manuscript (16 datasets in total) are not directly uploaded to this repository. You can download the original data from the following authoritative public repositories. After downloading, please refer to our preprocessing scripts (e.g., `preprocess_adt.py`, `preprocess_atac.py`) to format the raw data.
+Full Raw Datasets (Data Availability)
+Due to file size limitations, the full raw datasets evaluated in the manuscript (18 datasets in total) are not directly uploaded to this repository. You can download the original data from the following authoritative public repositories or cloud storage. After downloading, please refer to our preprocessing scripts (e.g., preprocess_adt.py, preprocess_atac.py) to format the raw data.
 
-**Unimodal scRNA-seq Datasets (Table 1):**
-* **Tosches_turtle**: [https://hemberg-lab.github.io/scRNA.seq.datasets/animal/brain/](https://hemberg-lab.github.io/scRNA.seq.datasets/animal/brain/)
-* **Chen**: [https://hemberg-lab.github.io/scRNA.seq.datasets/human/brain/](https://hemberg-lab.github.io/scRNA.seq.datasets/human/brain/)
-* **Zeisel**: [https://hemberg-lab.github.io/scRNA.seq.datasets/mouse/brain/](https://hemberg-lab.github.io/scRNA.seq.datasets/mouse/brain/)
-* **Young**: [https://hemberg-lab.github.io/scRNA.seq.datasets/human/kidney/](https://hemberg-lab.github.io/scRNA.seq.datasets/human/kidney/)
-* **Worm_neuron_cells**: [https://hemberg-lab.github.io/scRNA.seq.datasets/animal/worm/](https://hemberg-lab.github.io/scRNA.seq.datasets/animal/worm/)
-* **Quake_10x_Limb_Muscle**: [https://figshare.com/projects/Tabula_Muris/27733](https://figshare.com/projects/Tabula_Muris/27733)
-* **Quake_Smart-seq2_Limb_Muscle**: [https://figshare.com/projects/Tabula_Muris/27733](https://figshare.com/projects/Tabula_Muris/27733)
-* **human_pbmc_3k**: [https://www.10xgenomics.com/resources/datasets](https://www.10xgenomics.com/resources/datasets)
+Unimodal scRNA-seq Datasets (8 Datasets):
 
-**Multimodal Cross-Omics Datasets (Table 2):**
-* **GSE150599_spleen_lymph_111**: [https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE150599](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE150599)
-* **GSE163120** (Glioblastoma): [https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE163120](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE163120)
-* **GSE201402** (Gastric Cancer): [https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE201402](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE201402)
-* **SHARE-seq_mouse_skin**: [https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE140203](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE140203)
-* **10X5kpbmc**: [https://www.10xgenomics.com/resources/datasets](https://www.10xgenomics.com/resources/datasets)
-* **human_pbmc_3k**: [https://www.10xgenomics.com/resources/datasets](https://www.10xgenomics.com/resources/datasets)
-* **human_pbmc_10x**: [https://www.10xgenomics.com/resources/datasets](https://www.10xgenomics.com/resources/datasets)
-* **human_brain_10x**: [https://www.10xgenomics.com/resources/datasets](https://www.10xgenomics.com/resources/datasets)
+Young: https://zenodo.org/records/7475687
+MCA: https://www.dropbox.com/scl/fi/kx9ec2vr922w7aznatc2g/data.zip?rlkey=8xehi0ix40fj965djugny2yq7&e=1
+
+Zeisel: https://www.dropbox.com/scl/fi/kx9ec2vr922w7aznatc2g/data.zip?rlkey=8xehi0ix40fj965djugny2yq7&e=1
+
+Tosches_turtle: https://zenodo.org/records/7475687
+
+Chen: https://zenodo.org/records/7475687
+
+Worm_neuron_cells: https://www.dropbox.com/scl/fi/kx9ec2vr922w7aznatc2g/data.zip?rlkey=8xehi0ix40fj965djugny2yq7&e=1
+
+Quake_10x_Limb_Muscle: https://zenodo.org/records/7475687
+
+Quake_Smart-seq2_Limb_Muscle: https://zenodo.org/records/7475687
+
+Multimodal Benchmark Datasets (8 Datasets):
+
+10Xmalt: https://figshare.com/articles/dataset/scMAGCA-datasets/30164773
+
+10X5kpbmc: https://figshare.com/articles/dataset/scMAGCA-datasets/30164773
+
+GSE150599_spleen_lymph_111: https://figshare.com/articles/dataset/scMAGCA-datasets/30164773
+
+zenodo6348128: https://figshare.com/articles/dataset/scMAGCA-datasets/30164773
+
+human_pbmc_3k: https://figshare.com/articles/dataset/scMAGCA-datasets/30164773
+
+human_pbmc_10x: https://figshare.com/articles/dataset/scMAGCA-datasets/30164773
+
+pbmc_unsorted_10k: https://figshare.com/articles/dataset/scMAGCA-datasets/30164773
+
+GSE201402: https://figshare.com/articles/dataset/scMAGCA-datasets/30164773
+
+Downstream Analysis Datasets (2 Datasets):
+
+human_brain_10x: https://mailustceducn-my.sharepoint.com/personal/hyl2016_mail_ustc_edu_cn/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fhyl2016%5Fmail%5Fustc%5Fedu%5Fcn%2FDocuments%2FMultiomicsBenchmark%2FRaw%5Fdata&viewid=b6d1a33b%2D630a%2D4d98%2Db85e%2D2df575b1c642
+
+GSE163120: https://mailustceducn-my.sharepoint.com/personal/hyl2016_mail_ustc_edu_cn/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fhyl2016%5Fmail%5Fustc%5Fedu%5Fcn%2FDocuments%2FMultiomicsBenchmark%2FRaw%5Fdata&viewid=b6d1a33b%2D630a%2D4d98%2Db85e%2D2df575b1c642
 
 ## Usage
 
